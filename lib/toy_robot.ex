@@ -1,15 +1,57 @@
 defmodule ToyRobot do
-  defstruct [north: 0, east: 0, facing: :north]
+  defstruct north: 0, east: 0, facing: :north
   alias ToyRobot, as: Robot
+
   @moduledoc """
   Documentation for ToyRobot.
   """
 
   @doc """
+  Turn the robot on the right.
+
+  @Examples
+    iex> alias ToyRobot, as: Robot
+    Robot
+    iex> robot = %Robot {facing: :north}
+    %Robot{facing: :north}
+    iex> robot |> Robot.turn_right
+    %Robot{facing: :east}
+  """
+
+  def turn_right(%Robot{facing: facing}) do
+    case facing do
+      :north -> %Robot{facing: :east}
+      :south -> %Robot{facing: :west}
+      :east -> %Robot{facing: :south}
+      :west -> %Robot{facing: :north}
+    end
+  end
+
+  @doc """
+  Turns the robot left.
+
+  ## Examples
+    iex> alias ToyRobot, as: Robot
+    Robot
+    iex> robot = %Robot{facing: :north}
+    %Robot{facing: :north}
+    iex> robot |> Robot.turn_left
+    %Robot{facing: :west}
+  """
+
+  def turn_left(%Robot{facing: facing}) do
+    case facing do
+    :north -> %Robot{facing: :west}
+    :east ->  %Robot{facing: :north}
+    :west ->  %Robot{facing: :south}
+    :south ->  %Robot{facing: :east}
+    end
+  end
+
+  @doc """
   Moves the robot forward on space in the direciton it is facing
 
   ## Examples
-
       iex> alias ToyRobot, as: Robot
       ToyRobot
       iex> robot = %Robot{north: 0, facing: :north}
