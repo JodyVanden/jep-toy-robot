@@ -18,13 +18,14 @@ defmodule ToyRobot do
     %Robot{facing: :east}
   """
 
-  def turn_right(%Robot{facing: facing}) do
-    case facing do
-      :north -> %Robot{facing: :east}
-      :south -> %Robot{facing: :west}
-      :east -> %Robot{facing: :south}
-      :west -> %Robot{facing: :north}
+  def turn_right(%Robot{facing: facing} = robot) do
+    new_facing = case facing do
+      :north -> :east
+      :south -> :west
+      :west -> :north
+      :east -> :south
     end
+    %Robot{robot | facing: new_facing}
   end
 
   @doc """
@@ -39,13 +40,14 @@ defmodule ToyRobot do
     %Robot{facing: :west}
   """
 
-  def turn_left(%Robot{facing: facing}) do
-    case facing do
-    :north -> %Robot{facing: :west}
-    :east ->  %Robot{facing: :north}
-    :west ->  %Robot{facing: :south}
-    :south ->  %Robot{facing: :east}
+  def turn_left(%Robot{facing: facing} = robot) do
+    new_facing = case facing do
+      :north -> :west
+      :south -> :east
+      :west -> :south
+      :east -> :north
     end
+    %Robot{robot | facing: new_facing}
   end
 
   @doc """
@@ -69,19 +71,19 @@ defmodule ToyRobot do
     end
   end
 
-  defp move_east(robot) do
-    %Robot{east: robot.east + 1}
+  defp move_east(%Robot{} = robot) do
+    %Robot{robot | east: robot.east + 1}
   end
 
-  defp move_west(robot) do
-    %Robot{east: robot.east - 1}
+  defp move_west(%Robot{} = robot) do
+    %Robot{robot | east: robot.east - 1}
   end
 
-  defp move_north(robot) do
-    %Robot{north: robot.north + 1}
+  defp move_north(%Robot{} = robot) do
+    %Robot{robot | north: robot.north + 1}
   end
 
-  defp move_south(robot) do
-    %Robot{north: robot.north - 1}
+  defp move_south(%Robot{} = robot) do
+    %Robot{robot | north: robot.north - 1}
   end
 end
