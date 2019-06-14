@@ -22,7 +22,7 @@ defmodule ToyRobot.CLI do
   end
 
   def run_commands(["MOVE" | commands], robot) do
-    run_commands(commands, robot |> ToyRobot.move())
+    run_commands(commands, robot |> ToyRobot.Robot.move())
   end
 
   def run_commands([], %{position: position}) do

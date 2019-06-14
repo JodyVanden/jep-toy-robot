@@ -1,7 +1,7 @@
-defmodule ToyRobotTest do
-  alias ToyRobot, as: Robot
+defmodule ToyRobot.RobotTest do
+  alias ToyRobot.Robot
   use ExUnit.Case
-  doctest ToyRobot
+  doctest ToyRobot.Robot
 
   describe "when the robot is facing west and has moved forward north once" do
     setup do
